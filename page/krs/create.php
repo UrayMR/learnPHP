@@ -28,17 +28,17 @@ include "../../config/conn.php";
     <h2>Form Tambah KRS</h2>
     <form action="../../controller/KRSController.php" method="POST">
       <input type="hidden" name="action" value="create">
-      <select name="mahasiswa_id" required>
+      <select name="npm" required>
         <option value="">Pilih Mahasiswa</option>
         <?php
         $mahasiswa_query = "SELECT * FROM Mahasiswa";
         $mahasiswa_result = mysqli_query($conn, $mahasiswa_query);
         while ($mahasiswa = mysqli_fetch_assoc($mahasiswa_result)) {
-          echo "<option value='{$mahasiswa['id']}'>{$mahasiswa['name']}</option>";
+          echo "<option value='{$mahasiswa['npm']}'>{$mahasiswa['name']}</option>";
         }
         ?>
       </select>
-      <select name="matakuliah_id" required>
+      <select name="idMataKuliah" required>
         <option value="">Pilih Mata Kuliah</option>
         <?php
         $matakuliah_query = "SELECT * FROM MataKuliah";

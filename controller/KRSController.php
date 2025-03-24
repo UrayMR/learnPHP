@@ -4,10 +4,10 @@ include '../config/conn.php';
 $location = "../page/krs/";
 
 if ($_SERVER['REQUEST_METHOD'] == "POST" && $_POST['action'] == "create") {
-  $mahasiswa_id = $_POST['mahasiswa_id'];
-  $matakuliah_id = $_POST['matakuliah_id'];
+  $npm = $_POST['npm'];
+  $idMataKuliah = $_POST['idMataKuliah'];
 
-  $query = "INSERT INTO KRS (mahasiswa_id, matakuliah_id) VALUES ('$mahasiswa_id', '$matakuliah_id')";
+  $query = "INSERT INTO KRS (npm, idMataKuliah) VALUES ('$npm', '$idMataKuliah')";
   mysqli_query($conn, $query);
 
   header("Location: " . $location . "index.php?success=KRS berhasil ditambahkan");
@@ -26,10 +26,10 @@ if ($_SERVER['REQUEST_METHOD'] == "GET" && $_GET['action'] == "delete") {
 
 if ($_SERVER['REQUEST_METHOD'] == "POST" && $_POST['action'] == "edit") {
   $id = $_POST['id'];
-  $mahasiswa_id = $_POST['mahasiswa_id'];
-  $matakuliah_id = $_POST['matakuliah_id'];
+  $npm = $_POST['npm'];
+  $idMataKuliah = $_POST['idMataKuliah'];
 
-  $query = "UPDATE KRS SET mahasiswa_id = '$ mahasiswa_id', matakuliah_id = '$matakuliah_id' WHERE id = '$id'";
+  $query = "UPDATE KRS SET npm = '$ npm', idMataKuliah = '$idMataKuliah' WHERE id = '$id'";
   mysqli_query($conn, $query);
 
   header("Location: " . $location . "index.php?success=KRS berhasil diubah");
