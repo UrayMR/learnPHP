@@ -4,6 +4,7 @@ include "../../config/conn.php";
 $id = $_GET['id'];
 $query = "SELECT * FROM Mahasiswa WHERE id = $id";
 $result = mysqli_query($conn, $query);
+$mahasiswa = mysqli_fetch_assoc($result);
 ?>
 
 <!DOCTYPE html>
@@ -16,16 +17,33 @@ $result = mysqli_query($conn, $query);
 </head>
 
 <body>
+  <nav>
+    <a href="../dashboard.php">Dashboard</a>
+    <a href="../fakultas/index.php">Fakultas</a>
+    <a href="../prodi/index.php">Prodi</a>
+    <a href="index.php">Mahasiswa</a>
+    <a href="../matakuliah/index.php">Mata Kuliah</a>
+    <a href="../ruangankelas/index.php">Ruangan Kelas</a>
+    <a href="../krs/index.php">KRS</a>
+  </nav>
   <h2>Edit Mahasiswa</h2>
   <form action="../../controller/MahasiswaController.php" method="POST">
-    <?php while ($row = mysqli_fetch_array($result)) : ?>
-      <input type="hidden" name="action" value="edit">
-      <input type="hidden" name="id" value="<?php echo $row['id'] ?>" required>
-      <input type="text" name="npm" value="<?php echo $row['npm'] ?>" required>
-      <input type="text" name="name" value="<?php echo $row['name'] ?>" required>
-      <input type="text" name="idProdi" value="<?php echo $row['idProdi'] ?>" required>
-      <button type="submit">Update</button>
-    <?php endwhile; ?>
+    <input type="hidden" name="action" value="edit">
+    <input type="hidden" name="id" value="<?= $id ?>">
+    <input type="text" name="npm" value="<?= $mahasiswa['npm'] ?>" required>
+    <input type="text" name="name" value="<?= $mahasiswa['name'] ?>" required>
+    <select name="prodi_id" required>
+      <option value="">Pilih Prodi</option>
+      <?php
+      $prodi_query = "SELECT * FROM Prodi";
+      $prodi_result = mysqli_query($conn, $prodi_query);
+      while ($prodi = mysqli_fetch_assoc($prodi_result)) {
+        $selected = $prodi['id'] == $mahasiswa['prodi_id'] ? 'selected' : '';
+        echo "<option value='{$prodi['id']}' $selected>{$prodi['name']}</option>";
+      }
+      ?>
+    </select>
+    <button type="submit">Simpan Perubahan</button>
   </form>
 </body>
 

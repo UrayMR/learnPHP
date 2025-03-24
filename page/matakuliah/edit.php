@@ -4,6 +4,7 @@ include "../../config/conn.php";
 $id = $_GET['id'];
 $query = "SELECT * FROM MataKuliah WHERE id = $id";
 $result = mysqli_query($conn, $query);
+$matakuliah = mysqli_fetch_assoc($result);
 ?>
 
 <!DOCTYPE html>
@@ -16,15 +17,23 @@ $result = mysqli_query($conn, $query);
 </head>
 
 <body>
+  <nav>
+    <a href="../dashboard.php">Dashboard</a>
+    <a href="../fakultas/index.php">Fakultas</a>
+    <a href="../prodi/index.php">Prodi</a>
+    <a href="../mahasiswa/index.php">Mahasiswa</a>
+    <a href="index.php">Mata Kuliah</a>
+    <a href="../ruangankelas/index.php">Ruangan Kelas</a>
+    <a href="../krs/index.php">KRS</a>
+  </nav>
+  
   <h2>Edit Mata Kuliah</h2>
   <form action="../../controller/MataKuliahController.php" method="POST">
-    <?php while ($row = mysqli_fetch_array($result)) : ?>
-      <input type="hidden" name="action" value="edit">
-      <input type="hidden" name="id" value="<?php echo $row['id'] ?>" required>
-      <input type="text" name="name" value="<?php echo $row['name'] ?>" required>
-      <input type="text" name="idProdi" value="<?php echo $row['idProdi'] ?>" required>
-      <button type="submit">Update</button>
-    <?php endwhile; ?>
+    <input type="hidden" name="action" value="edit">
+    <input type="hidden" name="id" value="<?= $id ?>">
+    <input type="text" name="name" value="<?= $matakuliah['name'] ?>" required>
+    <input type="number" name="sks" value="<?= $matakuliah['sks'] ?>" required>
+    <button type="submit">Simpan Perubahan</button>
   </form>
 </body>
 

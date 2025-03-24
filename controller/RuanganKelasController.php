@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && $_POST['action'] == "create") {
   $query = "INSERT INTO RuanganKelas (name, capacity) VALUES ('$name', '$capacity')";
   mysqli_query($conn, $query);
 
-  header("Location: <?= $location ?>index.php");
+  header("Location: <?= $location ?>index.php?success=Ruangan Kelas berhasil ditambahkan");
   exit();
 }
 
@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == "GET" && $_GET['action'] == "delete") {
   $query = "DELETE FROM RuanganKelas WHERE id = '$id'";
   mysqli_query($conn, $query);
 
-  header("Location: <?= $location ?>index.php");
+  header("Location: <?= $location ?>index.php?success=Ruangan Kelas berhasil dihapus");
   exit();
 }
 
@@ -32,6 +32,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && $_POST['action'] == "edit") {
   $query = "UPDATE RuanganKelas SET name = '$name', capacity = '$capacity' WHERE id = '$id'";
   mysqli_query($conn, $query);
 
-  header("Location: <?= $location ?>index.php");
+  header("Location: <?= $location ?>index.php?success=Ruangan Kelas berhasil diubah");
   exit();
 }

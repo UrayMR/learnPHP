@@ -4,6 +4,7 @@ include "../../config/conn.php";
 $id = $_GET['id'];
 $query = "SELECT * FROM Prodi WHERE id = $id";
 $result = mysqli_query($conn, $query);
+$prodi = mysqli_fetch_assoc($result);
 ?>
 
 <!DOCTYPE html>
@@ -16,16 +17,32 @@ $result = mysqli_query($conn, $query);
 </head>
 
 <body>
+  <nav>
+    <a href="../dashboard.php">Dashboard</a>
+    <a href="../fakultas/index.php">Fakultas</a>
+    <a href="index.php">Prodi</a>
+    <a href="../mahasiswa/index.php">Mahasiswa</a>
+    <a href="../matakuliah/index.php">Mata Kuliah</a>
+    <a href="../ruangankelas/index.php">Ruangan Kelas</a>
+    <a href="../krs/index.php">KRS</a>
+  </nav>
   <h2>Edit Prodi</h2>
-  <form action="../../controller/ProdiController.php" method="POST">
-    <?php while ($row = mysqli_fetch_array($result)) : ?>
-      <input type="hidden" name="action" value="edit">
-      <input type="hidden" name="id" value="<?php echo $row['id'] ?>" required>
-      <input type="text" name="kodeProdi" value="<?php echo $row['kodeProdi'] ?>" required>
-      <input type="text" name="namaProdi" value="<?php echo $row['namaProdi'] ?>" required>
-      <input type="text" name="idFakultas" value="<?php echo $row['idFakultas'] ?>" required>
-      <button type="submit">Update</button>
-    <?php endwhile; ?>
+  <form action="../../controller/Prodi Controller.php" method="POST">
+    <input type="hidden" name="action" value="edit">
+    <input type="hidden" name="id" value="<?= $id ?>">
+    <input type="text" name="name" value="<?= $prodi['name'] ?>" required>
+    <select name="fakultas_id" required>
+      <option value="">Pilih Fakultas</option>
+      <?php
+      $fakultas_query = "SELECT * FROM Fakultas";
+      $fakultas_result = mysqli_query($conn, $fakultas_query);
+      while ($fakultas = mysqli_fetch_assoc($fakultas_result)) {
+        $selected = $fakultas['id'] == $prodi['fakultas_id'] ? 'selected' : '';
+        echo "<option value='{$fakultas['id']}' $selected>{$fakultas['name']}</option>";
+      }
+      ?>
+    </select>
+    <button type="submit">Simpan Perubahan</button>
   </form>
 </body>
 

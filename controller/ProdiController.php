@@ -4,19 +4,13 @@ include '../config/conn.php';
 $location = "../page/prodi/";
 
 if ($_SERVER['REQUEST_METHOD'] == "POST" && $_POST['action'] == "create") {
-  $kodeProdi = $_POST['kodeProdi'];
-  $namaProdi = $_POST['namaProdi'];
-  $idFakultas = $_POST['idFakultas'];
+  $name = $_POST['name'];
+  $fakultas_id = $_POST['fakultas_id'];
 
-  // Validasi untuk memastikan kodeProdi unik
-  $queryCheck = "SELECT * FROM Prodi WHERE kodeProdi = '$kodeProdi'";
-  $resultCheck = mysqli_query($conn, $queryCheck);
-  if (mysqli_num_rows($resultCheck) == 0) {
-    $query = "INSERT INTO Prodi (kodeProdi, namaProdi, idFakultas) VALUES ('$kodeProdi', '$namaProdi', '$idFakultas')";
-    mysqli_query($conn, $query);
-  }
+  $query = "INSERT INTO Prodi (name, fakultas_id) VALUES ('$name', '$fakultas_id')";
+  mysqli_query($conn, $query);
 
-  header("Location: <?= $location ?>index.php");
+  header("Location: <?= $location ?>index.php?success=Prodi berhasil ditambahkan");
   exit();
 }
 
@@ -26,24 +20,18 @@ if ($_SERVER['REQUEST_METHOD'] == "GET" && $_GET['action'] == "delete") {
   $query = "DELETE FROM Prodi WHERE id = '$id'";
   mysqli_query($conn, $query);
 
-  header("Location: <?= $location ?>index.php");
+  header("Location: <?= $location ?>index.php?success=Prodi berhasil dihapus");
   exit();
 }
 
 if ($_SERVER['REQUEST_METHOD'] == "POST" && $_POST['action'] == "edit") {
   $id = $_POST['id'];
-  $kodeProdi = $_POST['kodeProdi'];
-  $namaProdi = $_POST['namaProdi'];
-  $idFakultas = $_POST['idFakultas'];
+  $name = $_POST['name'];
+  $fakultas_id = $_POST['fakultas_id'];
 
-  // Validasi untuk memastikan kodeProdi unik saat edit
-  $queryCheck = "SELECT * FROM Prodi WHERE kodeProdi = '$kodeProdi' AND id != '$id'";
-  $resultCheck = mysqli_query($conn, $queryCheck);
-  if (mysqli_num_rows($resultCheck) == 0) {
-    $query = "UPDATE Prodi SET kodeProdi = '$kodeProdi', namaProdi = '$namaProdi', idFakultas = '$idFakultas' WHERE id = '$id'";
-    mysqli_query($conn, $query);
-  }
+  $query = "UPDATE Prodi SET name = '$name', fakultas_id = '$fakultas_id' WHERE id = '$id'";
+  mysqli_query($conn, $query);
 
-  header("Location: <?= $location ?>index.php");
+  header("Location: <?= $location ?>index.php?success=Prodi berhasil diubah");
   exit();
 }

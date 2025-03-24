@@ -5,17 +5,12 @@ $location = "../page/matakuliah/";
 
 if ($_SERVER['REQUEST_METHOD'] == "POST" && $_POST['action'] == "create") {
   $name = $_POST['name'];
-  $idProdi = $_POST['idProdi'];
+  $sks = $_POST['sks'];
 
-  // Validasi untuk memastikan idProdi ada
-  $queryCheck = "SELECT * FROM Prodi WHERE id = '$idProdi'";
-  $resultCheck = mysqli_query($conn, $queryCheck);
-  if (mysqli_num_rows($resultCheck) > 0) {
-    $query = "INSERT INTO MataKuliah (name, idProdi) VALUES ('$name', '$idProdi')";
-    mysqli_query($conn, $query);
-  }
+  $query = "INSERT INTO MataKuliah (name, sks) VALUES ('$name', '$sks')";
+  mysqli_query($conn, $query);
 
-  header("Location: <?= $location ?>index.php");
+  header("Location: <?= $location ?>index.php?success=Mata Kuliah berhasil ditambahkan");
   exit();
 }
 
@@ -25,18 +20,18 @@ if ($_SERVER['REQUEST_METHOD'] == "GET" && $_GET['action'] == "delete") {
   $query = "DELETE FROM MataKuliah WHERE id = '$id'";
   mysqli_query($conn, $query);
 
-  header("Location: <?= $location ?>index.php");
+  header("Location: <?= $location ?>index.php?success=Mata Kuliah berhasil dihapus");
   exit();
 }
 
 if ($_SERVER['REQUEST_METHOD'] == "POST" && $_POST['action'] == "edit") {
   $id = $_POST['id'];
   $name = $_POST['name'];
-  $idProdi = $_POST['idProdi'];
+  $sks = $_POST['sks'];
 
-  $query = "UPDATE MataKuliah SET name = '$name', idProdi = '$idProdi' WHERE id = '$id'";
+  $query = "UPDATE MataKuliah SET name = '$name', sks = '$sks' WHERE id = '$id'";
   mysqli_query($conn, $query);
 
-  header("Location: <?= $location ?>index.php");
+  header("Location: <?= $location ?>index.php?success=Mata Kuliah berhasil diubah");
   exit();
 }

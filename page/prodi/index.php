@@ -11,29 +11,39 @@ $result = mysqli_query($conn, $query);
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Data Prodi</title>
+  <title>Daftar Prodi</title>
 </head>
 
 <body>
-  <h2>Data Prodi</h2>
+  <nav>
+    <a href="../dashboard.php">Dashboard</a>
+    <a href="../fakultas/index.php">Fakultas</a>
+    <a href="index.php">Prodi</a>
+    <a href="../mahasiswa/index.php">Mahasiswa</a>
+    <a href="../matakuliah/index.php">Mata Kuliah</a>
+    <a href="../ruangankelas/index.php">Ruangan Kelas</a>
+    <a href="../krs/index.php">KRS</a>
+  </nav>
+  <h2>Daftar Prodi</h2>
+  <?php if (isset($_GET['success'])): ?>
+    <p><?= $_GET['success'] ?></p>
+  <?php endif; ?>
   <a href="create.php">Tambah Prodi</a>
-  <table border="1">
+  <table>
     <tr>
       <th>ID</th>
-      <th>Kode Prodi</th>
       <th>Nama Prodi</th>
-      <th>ID Fakultas</th>
+      <th>Fakultas</th>
       <th>Aksi</th>
     </tr>
-    <?php while ($row = mysqli_fetch_array($result)) : ?>
+    <?php while ($row = mysqli_fetch_assoc($result)): ?>
       <tr>
-        <td><?php echo $row['id'] ?></td>
-        <td><?php echo $row['kodeProdi'] ?></td>
-        <td><?php echo $row['namaProdi'] ?></td>
-        <td><?php echo $row['idFakultas'] ?></td>
+        <td><?= $row['id'] ?></td>
+        <td><?= $row['name'] ?></td>
+        <td><?= $row['fakultas_id'] ?></td>
         <td>
-          <a href="edit.php?id=<?php echo $row['id'] ?>">Edit</a>
-          <a href="../../controller/ProdiController.php?action=delete&id=<?php echo $row['id'] ?>">Hapus</a>
+          <a href="edit.php?id=<?= $row['id'] ?>">Edit</a>
+          <a href="../../controller/ProdiController.php?action=delete&id=<?= $row['id'] ?>">Hapus</a>
         </td>
       </tr>
     <?php endwhile; ?>
