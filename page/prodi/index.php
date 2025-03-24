@@ -35,7 +35,7 @@ $result = mysqli_query($conn, $query);
     <?php if (isset($_GET['success'])): ?>
       <p><?= $_GET['success'] ?></p>
     <?php endif; ?>
-    <a href="create.php">Tambah Prodi</a>
+    <a href="create.php" class="tambah-button">Tambah Prodi</a>
     <table border="1">
       <tr>
         <th>ID</th>
@@ -49,8 +49,8 @@ $result = mysqli_query($conn, $query);
           <td><?= $row['name'] ?></td>
           <td><?= $row['fakultas_name'] ?></td>
           <td>
-            <a href="edit.php?id=<?= $row['id'] ?>">Edit</a>
-            <a href="../../controller/ProdiController.php?action=delete&id=<?= $row['id'] ?>">Hapus</a>
+            <a href="edit.php?id=<?= $row['id'] ?>" class="action-button">Edit</a>
+            <a href="../../controller/ProdiController.php?action=delete&id=<?= $row['id'] ?>" class="action-button delete">Hapus</a>
           </td>
         </tr>
       <?php endwhile; ?>
