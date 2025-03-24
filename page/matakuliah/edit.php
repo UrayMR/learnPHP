@@ -37,6 +37,17 @@ $matakuliah = mysqli_fetch_assoc($result);
       <input type="hidden" name="id" value="<?= $id ?>">
       <input type="text" name="name" value="<?= $matakuliah['name'] ?>" required>
       <input type="number" name="sks" value="<?= $matakuliah['sks'] ?>" required>
+      <select name="prodi_id" required>
+        <option value="">Pilih Prodi</option>
+        <?php
+        $prodi_query = "SELECT * FROM Prodi";
+        $prodi_result = mysqli_query($conn, $prodi_query);
+        while ($prodi = mysqli_fetch_assoc($prodi_result)) {
+          $selected = $prodi['id'] == $matakuliah['idProdi'] ? 'selected' : '';
+          echo "<option value='{$prodi['id']}' $selected>{$prodi['name']}</option>";
+        }
+        ?>
+      </select>
       <button type="submit">Simpan Perubahan</button>
     </form>
   </main>

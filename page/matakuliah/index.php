@@ -1,7 +1,7 @@
 <?php
 include "../../config/conn.php";
 
-$query = "SELECT * FROM MataKuliah";
+$query = "SELECT mk.id, mk.name, mk.sks, p.name as prodi_name FROM MataKuliah mk LEFT JOIN Prodi p ON mk.idProdi = p.id";
 $result = mysqli_query($conn, $query);
 ?>
 
@@ -39,6 +39,7 @@ $result = mysqli_query($conn, $query);
         <th>ID</th>
         <th>Nama Mata Kuliah</th>
         <th>SKS</th>
+        <th>Prodi</th>
         <th>Aksi</th>
       </tr>
       <?php while ($row = mysqli_fetch_assoc($result)): ?>
@@ -46,6 +47,7 @@ $result = mysqli_query($conn, $query);
           <td><?= $row['id'] ?></td>
           <td><?= $row['name'] ?></td>
           <td><?= $row['sks'] ?></td>
+          <td><?= $row['prodi_name'] ?></td>
           <td>
             <a href="edit.php?id=<?= $row['id'] ?>">Edit</a>
             <a href="../../controller/MataKuliahController.php?action=delete&id=<?= $row['id'] ?>">Hapus</a>

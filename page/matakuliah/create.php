@@ -27,6 +27,16 @@
       <input type="hidden" name="action" value="create">
       <input type="text" name="name" placeholder="Nama Mata Kuliah" required>
       <input type="number" name="sks" placeholder="SKS" required>
+      <select name="prodi_id" required>
+        <option value="">Pilih Prodi</option>
+        <?php
+        $prodi_query = "SELECT * FROM Prodi";
+        $prodi_result = mysqli_query($conn, $prodi_query);
+        while ($prodi = mysqli_fetch_assoc($prodi_result)) {
+          echo "<option value='{$prodi['id']}'>{$prodi['name']}</option>";
+        }
+        ?>
+      </select>
       <button type="submit">Tambah</button>
     </form>
   </main>

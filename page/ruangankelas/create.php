@@ -1,3 +1,7 @@
+<?php
+include "../../config/conn.php";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,6 +31,16 @@
       <input type="hidden" name="action" value="create">
       <input type="text" name="name" placeholder="Nama Ruangan" required>
       <input type="number" name="capacity" placeholder="Kapasitas" required>
+      <select name="fakultas_id" required>
+        <option value="">Pilih Fakultas</option>
+        <?php
+        $fakultas_query = "SELECT * FROM Fakultas";
+        $fakultas_result = mysqli_query($conn, $fakultas_query);
+        while ($fakultas = mysqli_fetch_assoc($fakultas_result)) {
+          echo "<option value='{$fakultas['id']}'>{$fakultas['name']}</option>";
+        }
+        ?>
+      </select>
       <button type="submit">Tambah</button>
     </form>
   </main>

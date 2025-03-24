@@ -1,7 +1,7 @@
 <?php
 include "../../config/conn.php";
 
-$query = "SELECT * FROM RuanganKelas";
+$query = "SELECT rk.id, rk.name, rk.capacity, f.name as fakultas_name FROM RuanganKelas rk LEFT JOIN Fakultas f ON rk.idFakultas = f.id";
 $result = mysqli_query($conn, $query);
 ?>
 
@@ -46,6 +46,7 @@ $result = mysqli_query($conn, $query);
           <td><?= $row['id'] ?></td>
           <td><?= $row['name'] ?></td>
           <td><?= $row['capacity'] ?></td>
+          <td><?= $row['fakultas_name'] ?></td>
           <td>
             <a href="edit.php?id=<?= $row['id'] ?>">Edit</a>
             <a href="../../controller/RuanganKelasController.php?action=delete&id=<?= $row['id'] ?>">Hapus</a>

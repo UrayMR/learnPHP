@@ -37,6 +37,17 @@ $ruangan = mysqli_fetch_assoc($result);
       <input type="hidden" name="id" value="<?= $id ?>">
       <input type="text" name="name" value="<?= $ruangan['name'] ?>" required>
       <input type="number" name="capacity" value="<?= $ruangan['capacity'] ?>" required>
+      <select name="fakultas_id" required>
+        <option value="">Pilih Fakultas</option>
+        <?php
+        $fakultas_query = "SELECT * FROM Fakultas";
+        $fakultas_result = mysqli_query($conn, $fakultas_query);
+        while ($fakultas = mysqli_fetch_assoc($fakultas_result)) {
+          $selected = $fakultas['id'] == $ruangan['idFakultas'] ? 'selected' : '';
+          echo "<option value='{$fakultas['id']}' $selected>{$fakultas['name']}</option>";
+        }
+        ?>
+      </select>
       <button type="submit">Simpan Perubahan</button>
     </form>
   </main>
