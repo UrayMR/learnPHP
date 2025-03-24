@@ -23,7 +23,7 @@ $result = mysqli_query($conn, $query);
       <input type="hidden" name="action" value="edit">
       <input type="hidden" name="npm" value="<?php echo $row['npm'] ?>">
       <input type="text" name="name" value="<?php echo $row['name'] ?>" required>
-      <input type="text" name="prodi" value="<?php echo $row['idProdi'] ?>" required>
+      <input type="text" name="prodi" value="<?php echo $row['prodi'] ?>" required>
       <button type="submit">Edit</button>
     <?php endwhile; ?>
   </form>

@@ -7,19 +7,11 @@ $datas = [
     'count' => 0
   ],
   [
-    'name' => 'Universitas',
-    'count' => 0
-  ],
-  [
     'name' => 'Fakultas',
     'count' => 0
   ],
   [
     'name' => 'Prodi',
-    'count' => 0
-  ],
-  [
-    'name' => 'Provinsi',
     'count' => 0
   ],
 ];

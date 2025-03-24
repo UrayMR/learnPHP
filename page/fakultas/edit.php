@@ -1,8 +1,8 @@
 <?php
 include "../../config/conn.php";
 
-$npm = $_GET['npm'];
-$query = "SELECT * FROM mahasiswa WHERE npm = $npm";
+$id = $_GET['id'];
+$query = "SELECT * FROM Fakultas WHERE id = $id";
 $result = mysqli_query($conn, $query);
 ?>
 
@@ -16,14 +16,13 @@ $result = mysqli_query($conn, $query);
 </head>
 
 <body>
-  <h2>Edit Mahasiswa</h2>
+  <h2>Edit Fakultas</h2>
 
-  <form action="../../controller/MahasiswaController.php" method="POST">
+  <form action="../../controller/FakultasController.php" method="POST">
     <?php while ($row = mysqli_fetch_array($result)) : ?>
       <input type="hidden" name="action" value="edit">
-      <input type="hidden" name="npm" value="<?php echo $row['npm'] ?>">
+      <input type="hidden" name="id" value="<?php echo $row['id'] ?>" required>
       <input type="text" name="name" value="<?php echo $row['name'] ?>" required>
-      <input type="text" name="prodi" value="<?php echo $row['idProdi'] ?>" required>
       <button type="submit">Edit</button>
     <?php endwhile; ?>
   </form>

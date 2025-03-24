@@ -8,12 +8,11 @@
 </head>
 
 <body>
-  <h2>Form Tambah Mahasiswa</h2>
-  <form action="../../controller/MahasiswaController.php" method="POST">
+  <h2>Form Tambah Prodi</h2>
+  <form action="../../controller/ProdiController.php" method="POST">
     <input type="hidden" name="action" value="create">
-    <input type="text" name="npm" placeholder="npm" required>
     <input type="text" name="name" placeholder="name" required>
-    <input type="text" name="idProdi" placeholder="idProdi" required>
+    <input type="text" name="idFakultas" value="<?php echo $row['idFakultas'] ?>" required>
     <button type="submit">Tambah</button>
   </form>
 </body>

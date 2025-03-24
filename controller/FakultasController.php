@@ -1,15 +1,14 @@
 <?php
 include '../config/conn.php';
 
-$location = "../page/mahasiswa/";
+$location = "../page/fakultas/";
 
 if ($_SERVER['REQUEST_METHOD'] == "POST" && $_POST['action'] == "create") {
 
-  $npm = $_POST['npm'];
+  $id = $_POST['id'];
   $name = $_POST['name'];
-  $idProdi = $_POST['idProdi'];
 
-  $query = "INSERT INTO mahasiswa (npm, name, idProdi) VALUES ('$npm', '$name', '$idProdi')";
+  $query = "INSERT INTO fakultas (id, name) VALUES ('$id', '$name')";
   mysqli_query($conn, $query);
 
   header("Location: <?= $location ?>index.php");
@@ -17,9 +16,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && $_POST['action'] == "create") {
 }
 
 if ($_SERVER['REQUEST_METHOD'] == "GET" && $_GET['action'] == "delete") {
-  $npm = $_GET['npm'];
+  $id = $_GET['id'];
 
-  $query = "DELETE FROM mahasiswa WHERE npm = '$npm'";
+  $query = "DELETE FROM fakultas WHERE id = '$id'";
   mysqli_query($conn, $query);
 
 
@@ -29,11 +28,10 @@ if ($_SERVER['REQUEST_METHOD'] == "GET" && $_GET['action'] == "delete") {
 
 if ($_SERVER['REQUEST_METHOD'] == "POST" && $_POST['action'] == "edit") {
 
-  $npm = $_POST['npm'];
+  $id = $_POST['id'];
   $name = $_POST['name'];
-  $idProdi = $_POST['idProdi'];
 
-  $query = "UPDATE mahasiswa SET name = '$name' WHERE npm = '$npm'";
+  $query = "UPDATE fakultas SET name = '$name' WHERE id = '$id'";
   mysqli_query($conn, $query);
 
   header("Location:  <?= $location ?>index.php");
