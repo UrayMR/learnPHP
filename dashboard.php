@@ -14,6 +14,18 @@ $datas = [
     'name' => 'Prodi',
     'count' => 0
   ],
+  [
+    'name' => 'MataKuliah',
+    'count' => 0
+  ],
+  [
+    'name' => 'RuanganKelas',
+    'count' => 0
+  ],
+  [
+    'name' => 'KRS',
+    'count' => 0
+  ],
 ];
 
 foreach ($datas as $key => $data) {
@@ -51,6 +63,22 @@ $resultMahasiswa = mysqli_query($conn, $queryMahasiswa);
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <link rel="stylesheet" href="style.css">
+
+  <style>
+    #dashboardContainer {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+
+      .card {
+        text-align: center;
+        padding: 20px;
+        border-radius: 10px;
+        border: 1px solid #ccc;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+    }
+  </style>
 </head>
 
 <body>
@@ -67,40 +95,41 @@ $resultMahasiswa = mysqli_query($conn, $queryMahasiswa);
   </header>
 
   <main>
-    <section>
-      <h1>
-        Dashboard
-      </h1>
+    <h1>
+      Dashboard
+    </h1>
 
+    <section id="dashboardContainer">
       <?php foreach ($datas as $data) : ?>
-        <div>
+        <div class="card">
           <h3>Total <?php echo $data['name']; ?></h3>
           <p><?php echo $data['count']; ?></p>
         </div>
       <?php endforeach; ?>
-
-      <h2>5 Mahasiswa Teratas</h2>
-      <table border="1">
-        <tr>
-          <th>NPM</th>
-          <th>Nama Mahasiswa</th>
-          <th>Prodi</th>
-          <th>Fakultas</th>
-          <th>Jumlah Mata Kuliah</th>
-          <th>Total SKS</th>
-        </tr>
-        <?php while ($row = mysqli_fetch_array($resultMahasiswa)) : ?>
-          <tr>
-            <td><?= $row['npm'] ?></td>
-            <td><?= $row['Mahasiswa'] ?></td>
-            <td><?= $row['Prodi'] ?></td>
-            <td><?= $row['Fakultas'] ?></td>
-            <td><?= $row['MataKuliahCount'] ?></td>
-            <td><?= $row['TotalSKS'] ?></td>
-          </tr>
-        <?php endwhile; ?>
-      </table>
     </section>
+
+
+    <h2>5 Mahasiswa Teratas</h2>
+    <table border="1">
+      <tr>
+        <th>NPM</th>
+        <th>Nama Mahasiswa</th>
+        <th>Prodi</th>
+        <th>Fakultas</th>
+        <th>Jumlah Mata Kuliah</th>
+        <th>Total SKS</th>
+      </tr>
+      <?php while ($row = mysqli_fetch_array($resultMahasiswa)) : ?>
+        <tr>
+          <td><?= $row['npm'] ?></td>
+          <td><?= $row['Mahasiswa'] ?></td>
+          <td><?= $row['Prodi'] ?></td>
+          <td><?= $row['Fakultas'] ?></td>
+          <td><?= $row['MataKuliahCount'] ?></td>
+          <td><?= $row['TotalSKS'] ?></td>
+        </tr>
+      <?php endwhile; ?>
+    </table>
   </main>
 </body>
 
