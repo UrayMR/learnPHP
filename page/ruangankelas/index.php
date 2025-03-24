@@ -8,6 +8,10 @@ $result = mysqli_query($conn, $query);
 <!DOCTYPE html>
 <html lang="en">
 
+</html>
+
+</html>
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -34,7 +38,7 @@ $result = mysqli_query($conn, $query);
       <p><?= $_GET['success'] ?></p>
     <?php endif; ?>
     <a href="create.php">Tambah Ruangan Kelas</a>
-    <table>
+    <table border="1">
       <tr>
         <th>ID</th>
         <th>Nama Ruangan</th>

@@ -34,7 +34,7 @@ $result = mysqli_query($conn, $query);
       <p><?= $_GET['success'] ?></p>
     <?php endif; ?>
     <a href="create.php">Tambah Fakultas</a>
-    <table>
+    <table border="1">
       <tr>
         <th>ID</th>
         <th>Nama Fakultas</th>
