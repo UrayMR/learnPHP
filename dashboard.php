@@ -48,20 +48,21 @@ $resultMahasiswa = mysqli_query($conn, $queryMahasiswa);
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
   <header>
     <nav>
       <a href="dashboard.php">Home</a>
-      <a href="./page/mahasiswa/index.php">Mahasiswa</a>
       <a href="./page/fakultas/index.php">Fakultas</a>
       <a href="./page/prodi/index.php">Prodi</a>
+      <a href="./page/mahasiswa/index.php">Mahasiswa</a>
       <a href="./page/matakuliah/index.php">Mata Kuliah</a>
       <a href="./page/ruangankelas/index.php">Ruangan Kelas</a>
       <a href="./page/krs/index.php">KRS</a>
     </nav>
-  </header> 
+  </header>
 
   <main>
     <section>

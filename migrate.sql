@@ -20,6 +20,7 @@ CREATE TABLE Mahasiswa (
 CREATE TABLE MataKuliah (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
+    sks INT NOT NULL,
     idProdi INT,
     FOREIGN KEY (idProdi) REFERENCES Prodi(id) ON DELETE CASCADE
 );
@@ -27,6 +28,7 @@ CREATE TABLE MataKuliah (
 CREATE TABLE RuanganKelas (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
+    capacity INT NOT NULL,
     idFakultas INT,
     FOREIGN KEY (idFakultas) REFERENCES Fakultas(id) ON DELETE CASCADE
 );
