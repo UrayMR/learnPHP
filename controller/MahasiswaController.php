@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && $_POST['action'] == "create") {
   $query = "INSERT INTO Mahasiswa (npm, name, idProdi) VALUES ('$npm', '$name', '$idProdi')";
   mysqli_query($conn, $query);
 
-  header("Location: {$location}index.php?success=Mahasiswa berhasil ditambahkan");
+  header("Location: " . $location . "index.php?success=Mahasiswa berhasil ditambahkan");
   exit();
 }
 
@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == "GET" && $_GET['action'] == "delete") {
   $query = "DELETE FROM Mahasiswa WHERE npm = '$npm'";
   mysqli_query($conn, $query);
 
-  header("Location: {$location}index.php?success=Mahasiswa berhasil dihapus");
+  header("Location: " . $location . "index.php?success=Mahasiswa berhasil dihapus");
   exit();
 }
 
@@ -33,6 +33,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && $_POST['action'] == "edit") {
   $query = "UPDATE Mahasiswa SET name = '$name', idProdi = '$idProdi' WHERE npm = '$npm'";
   mysqli_query($conn, $query);
 
-  header("Location: {$location}index.php?success=Mahasiswa berhasil diubah");
+  header("Location: " . $location . "index.php?success=Mahasiswa berhasil diubah");
   exit();
 }

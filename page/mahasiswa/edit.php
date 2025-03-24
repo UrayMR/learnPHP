@@ -1,8 +1,8 @@
 <?php
 include "../../config/conn.php";
 
-$id = $_GET['id'];
-$query = "SELECT * FROM Mahasiswa WHERE id = $id";
+$npm = $_GET['npm'];
+$query = "SELECT * FROM Mahasiswa WHERE npm = $npm";
 $result = mysqli_query($conn, $query);
 $mahasiswa = mysqli_fetch_assoc($result);
 ?>
@@ -43,7 +43,7 @@ $mahasiswa = mysqli_fetch_assoc($result);
         $prodi_query = "SELECT * FROM Prodi";
         $prodi_result = mysqli_query($conn, $prodi_query);
         while ($prodi = mysqli_fetch_assoc($prodi_result)) {
-          $selected = $prodi['id'] == $mahasiswa['prodi_id'] ? 'selected' : '';
+          $selected = $prodi['id'] == $mahasiswa['idProdi'] ? 'selected' : '';
           echo "<option value='{$prodi['id']}' $selected>{$prodi['name']}</option>";
         }
         ?>

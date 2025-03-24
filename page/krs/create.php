@@ -1,3 +1,7 @@
+<?php
+include "../../config/conn.php";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -45,7 +49,7 @@
         ?>
       </select>
       <button type="submit">Tambah</button>
-    </form>  
+    </form>
   </main>
 </body>
 

@@ -42,7 +42,7 @@ $prodi = mysqli_fetch_assoc($result);
         $fakultas_query = "SELECT * FROM Fakultas";
         $fakultas_result = mysqli_query($conn, $fakultas_query);
         while ($fakultas = mysqli_fetch_assoc($fakultas_result)) {
-          $selected = $fakultas['id'] == $prodi['fakultas_id'] ? 'selected' : '';
+          $selected = $fakultas['id'] == $prodi['idFakultas'] ? 'selected' : '';
           echo "<option value='{$fakultas['id']}' $selected>{$fakultas['name']}</option>";
         }
         ?>

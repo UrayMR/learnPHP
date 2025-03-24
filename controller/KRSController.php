@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && $_POST['action'] == "create") {
   $query = "INSERT INTO KRS (mahasiswa_id, matakuliah_id) VALUES ('$mahasiswa_id', '$matakuliah_id')";
   mysqli_query($conn, $query);
 
-  header("Location: <?= $location ?>index.php?success=KRS berhasil ditambahkan");
+  header("Location: " . $location . "index.php?success=KRS berhasil ditambahkan");
   exit();
 }
 
@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == "GET" && $_GET['action'] == "delete") {
   $query = "DELETE FROM KRS WHERE id = '$id'";
   mysqli_query($conn, $query);
 
-  header("Location: <?= $location ?>index.php?success=KRS berhasil dihapus");
+  header("Location: " . $location . "index.php?success=KRS berhasil dihapus");
   exit();
 }
 
@@ -32,6 +32,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && $_POST['action'] == "edit") {
   $query = "UPDATE KRS SET mahasiswa_id = '$ mahasiswa_id', matakuliah_id = '$matakuliah_id' WHERE id = '$id'";
   mysqli_query($conn, $query);
 
-  header("Location: <?= $location ?>index.php?success=KRS berhasil diubah");
+  header("Location: " . $location . "index.php?success=KRS berhasil diubah");
   exit();
 }

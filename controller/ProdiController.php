@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && $_POST['action'] == "create") {
   $query = "INSERT INTO Prodi (name, idFakultas) VALUES ('$name', '$idFakultas')";
   mysqli_query($conn, $query);
 
-  header("Location: {$location}index.php?success=Prodi berhasil ditambahkan");
+  header("Location: " . $location . "index.php?success=Prodi berhasil ditambahkan");
   exit();
 }
 
@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == "GET" && $_GET['action'] == "delete") {
   $query = "DELETE FROM Prodi WHERE id = '$id'";
   mysqli_query($conn, $query);
 
-  header("Location: {$location}index.php?success=Prodi berhasil dihapus");
+  header("Location: " . $location . "index.php?success=Prodi berhasil dihapus");
   exit();
 }
 
@@ -32,6 +32,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && $_POST['action'] == "edit") {
   $query = "UPDATE Prodi SET name = '$name', idFakultas = '$idFakultas' WHERE id = '$id'";
   mysqli_query($conn, $query);
 
-  header("Location: {$location}index.php?success=Prodi berhasil diubah");
+  header("Location: " . $location . "index.php?success=Prodi berhasil diubah");
   exit();
 }

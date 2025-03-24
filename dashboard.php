@@ -28,7 +28,9 @@ foreach ($datas as $key => $data) {
 }
 
 $queryMahasiswa = "
-  SELECT m.npm, m.name AS Mahasiswa, p.name AS Prodi, f.name AS Fakultas, COUNT(mk.id) AS MataKuliahCount
+  SELECT m.npm, m.name AS Mahasiswa, p.name AS Prodi, f.name AS Fakultas, 
+         COUNT(mk.id) AS MataKuliahCount, 
+         COALESCE(SUM(mk.sks), 0) AS TotalSKS
   FROM Mahasiswa m
   JOIN Prodi p ON m.idProdi = p.id
   JOIN Fakultas f ON p.idFakultas = f.id
@@ -85,6 +87,7 @@ $resultMahasiswa = mysqli_query($conn, $queryMahasiswa);
           <th>Prodi</th>
           <th>Fakultas</th>
           <th>Jumlah Mata Kuliah</th>
+          <th>Total SKS</th>
         </tr>
         <?php while ($row = mysqli_fetch_array($resultMahasiswa)) : ?>
           <tr>
@@ -93,6 +96,7 @@ $resultMahasiswa = mysqli_query($conn, $queryMahasiswa);
             <td><?= $row['Prodi'] ?></td>
             <td><?= $row['Fakultas'] ?></td>
             <td><?= $row['MataKuliahCount'] ?></td>
+            <td><?= $row['TotalSKS'] ?></td>
           </tr>
         <?php endwhile; ?>
       </table>

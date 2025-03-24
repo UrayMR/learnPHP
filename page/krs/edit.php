@@ -52,7 +52,7 @@ $krs = mysqli_fetch_assoc($result);
                 $matakuliah_query = "SELECT * FROM MataKuliah";
                 $matakuliah_result = mysqli_query($conn, $matakuliah_query);
                 while ($matakuliah = mysqli_fetch_assoc($matakuliah_result)) {
-                    $selected = $matakuliah['id'] == $krs['matakuliah_id'] ? 'selected' : '';
+                    $selected = $matakuliah['id'] == $krs['idMataKuliah'] ? 'selected' : '';
                     echo "<option value='{$matakuliah['id']}' $selected>{$matakuliah['name']}</option>";
                 }
                 ?>
