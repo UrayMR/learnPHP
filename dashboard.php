@@ -53,14 +53,15 @@ $resultMahasiswa = mysqli_query($conn, $queryMahasiswa);
 <body>
   <header>
     <nav>
-      <a href="">Home</a>
-      <a href="">Mahasiswa</a>
-      <a href="">Universitas</a>
-      <a href="">Fakultas</a>
-      <a href="">Prodi</a>
-      <a href="">Provinsi</a>
+      <a href="dashboard.php">Home</a>
+      <a href="./page/mahasiswa/index.php">Mahasiswa</a>
+      <a href="./page/fakultas/index.php">Fakultas</a>
+      <a href="./page/prodi/index.php">Prodi</a>
+      <a href="./page/matakuliah/index.php">Mata Kuliah</a>
+      <a href="./page/ruangankelas/index.php">Ruangan Kelas</a>
+      <a href="./page/krs/index.php">KRS</a>
     </nav>
-  </header>
+  </header> 
 
   <main>
     <section>
