@@ -26,6 +26,19 @@ foreach ($datas as $key => $data) {
     $datas[$key]['count'] = $row['count'];
   }
 }
+
+$queryMahasiswa = "
+  SELECT m.npm, m.name AS Mahasiswa, p.name AS Prodi, f.name AS Fakultas, COUNT(mk.id) AS MataKuliahCount
+  FROM Mahasiswa m
+  JOIN Prodi p ON m.idProdi = p.id
+  JOIN Fakultas f ON p.idFakultas = f.id
+  LEFT JOIN MataKuliah mk ON mk.idProdi = p.id
+  GROUP BY m.npm
+  ORDER BY m.npm
+  LIMIT 5
+";
+
+$resultMahasiswa = mysqli_query($conn, $queryMahasiswa);
 ?>
 
 <!DOCTYPE html>
@@ -57,14 +70,30 @@ foreach ($datas as $key => $data) {
 
       <?php foreach ($datas as $data) : ?>
         <div>
-          <h3>
-            Total <?php echo $data['name']; ?>
-          </h3>
-          <p>
-            <?php echo $data['count']; ?>
-          </p>
+          <h3>Total <?php echo $data['name']; ?></h3>
+          <p><?php echo $data['count']; ?></p>
         </div>
       <?php endforeach; ?>
+
+      <h2>5 Mahasiswa Teratas</h2>
+      <table border="1">
+        <tr>
+          <th>NPM</th>
+          <th>Nama Mahasiswa</th>
+          <th>Prodi</th>
+          <th>Fakultas</th>
+          <th>Jumlah Mata Kuliah</th>
+        </tr>
+        <?php while ($row = mysqli_fetch_array($resultMahasiswa)) : ?>
+          <tr>
+            <td><?= $row['npm'] ?></td>
+            <td><?= $row['Mahasiswa'] ?></td>
+            <td><?= $row['Prodi'] ?></td>
+            <td><?= $row['Fakultas'] ?></td>
+            <td><?= $row['MataKuliahCount'] ?></td>
+          </tr>
+        <?php endwhile; ?>
+      </table>
     </section>
   </main>
 </body>

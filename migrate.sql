@@ -39,7 +39,11 @@ CREATE TABLE KRS (
     FOREIGN KEY (idMataKuliah) REFERENCES Mata_Kuliah(id) ON DELETE CASCADE
 );
 
-SELECT m.npm, m.name AS Mahasiswa, mk.name AS Mata_Kuliah
-FROM KRS krs
-JOIN Mahasiswa m ON krs.npm = m.npm
-JOIN Mata_Kuliah mk ON krs.idMataKuliah = mk.id;
+SELECT m.npm, m.name AS Mahasiswa, p.name AS Prodi, f.name AS Fakultas, COUNT(mk.id) AS MataKuliahCount
+  FROM Mahasiswa m
+  JOIN Prodi p ON m.idProdi = p.id
+  JOIN Fakultas f ON p.idFakultas = f.id
+  LEFT JOIN MataKuliah mk ON mk.idProdi = p.id
+  GROUP BY m.npm
+  ORDER BY m.npm
+  LIMIT 5

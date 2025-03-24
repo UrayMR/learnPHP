@@ -4,16 +4,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Form Tambah Mahasiswa</title>
+  <title>Form Tambah KRS</title>
 </head>
 
 <body>
-  <h2>Form Tambah Mahasiswa</h2>
-  <form action="../../controller/MahasiswaController.php" method="POST">
+  <h2>Form Tambah KRS</h2>
+  <form action="../../controller/KRSController.php" method="POST">
     <input type="hidden" name="action" value="create">
     <input type="text" name="npm" placeholder="NPM" required>
-    <input type="text" name="name" placeholder="Nama Mahasiswa" required>
-    <input type="text" name="idProdi" placeholder="ID Prodi" required>
+    <input type="text" name="idMataKuliah" placeholder="ID Mata Kuliah" required>
     <button type="submit">Tambah</button>
   </form>
 </body>

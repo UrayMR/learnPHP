@@ -1,8 +1,8 @@
 <?php
 include "../../config/conn.php";
 
-$npm = $_GET['npm'];
-$query = "SELECT * FROM mahasiswa WHERE npm = $npm";
+$id = $_GET['id'];
+$query = "SELECT * FROM MataKuliah WHERE id = $id";
 $result = mysqli_query($conn, $query);
 ?>
 
@@ -12,19 +12,18 @@ $result = mysqli_query($conn, $query);
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Edit Mata Kuliah</title>
 </head>
 
 <body>
-  <h2>Edit Mahasiswa</h2>
-
-  <form action="../../controller/MahasiswaController.php" method="POST">
+  <h2>Edit Mata Kuliah</h2>
+  <form action="../../controller/MataKuliahController.php" method="POST">
     <?php while ($row = mysqli_fetch_array($result)) : ?>
       <input type="hidden" name="action" value="edit">
-      <input type="hidden" name="npm" value="<?php echo $row['npm'] ?>">
+      <input type="hidden" name="id" value="<?php echo $row['id'] ?>" required>
       <input type="text" name="name" value="<?php echo $row['name'] ?>" required>
-      <input type="text" name="prodi" value="<?php echo $row['prodi'] ?>" required>
-      <button type="submit">Edit</button>
+      <input type="text" name="idProdi" value="<?php echo $row['idProdi'] ?>" required>
+      <button type="submit">Update</button>
     <?php endwhile; ?>
   </form>
 </body>
