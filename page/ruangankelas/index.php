@@ -43,6 +43,7 @@ $result = mysqli_query($conn, $query);
         <th>ID</th>
         <th>Nama Ruangan</th>
         <th>Kapasitas</th>
+        <th>Fakultas</th>
         <th>Aksi</th>
       </tr>
       <?php while ($row = mysqli_fetch_assoc($result)): ?>
